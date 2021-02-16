@@ -61,31 +61,29 @@
 
 \section{An information-theoretic derivation of the prime number theorem}
 
-If we know nothing about the primes in the worst case we may assume that each prime number less than or equal to $N$ is drawn uniformly from $[1,N]$. So our source of primes is:
+If we know nothing about the primes in the worst case we may assume that each prime number less than or equal to $N$ is drawn uniformly from $[1,N]$. So our source of primes is $X \sim U([1,N])$ where $H(X) = \ln(N)$ is the Shannon entropy of the uniform distribution.  
 
-\begin{equation}
-X \sim U([1,N])
-\end{equation}
-
-where $H(X) = \ln(N)$ is the Shannon entropy of the uniform distribution.  
-
-Now, given a strictly increasing integer sequence of length $N$, $U_N = \{u_i\}_{i=1}^N \in [1,N]^N$ we may define the \textit{prime encoding} of $U_N$ as the binary sequence $X_N = \{x_i\}_{i=1}^N$ where $x_i =1$ if $u_i$ is prime and
-$x_i=0$ otherwise. With no prior knowledge, given that each integer is either prime or not prime,
-we have $2^N$ possible prime encodings(i.e. arrangements of the primes) in $[1,N] \subset \mathbb{N}$.
-
-If there are $\pi(N)$ primes less than or equal to $N$ then the average number of bits per arrangement gives us the average amount of information gained from correctly identifying each prime number in $U_N$ as:
+Given a strictly increasing integer sequence of length $N$, $U_N = \{u_i\}_{i=1}^N \in [1,N]^N$ we may define the \textit{prime encoding} of $U_N$ as the binary sequence $X_N = \{x_i\}_{i=1}^N$ where $x_i =1$ if $u_i$ is prime and
+$x_i=0$ otherwise. With no prior knowledge, given that each integer is either prime or not prime
+we have $2^N$ possible prime encodings(i.e. arrangements of the primes) in $[1,N] \subset \mathbb{N}$ and if there are $\pi(N)$ primes less than or equal to $N$ then the average number of bits per arrangement gives us the average amount of information gained from correctly identifying each prime number in $U_N$ as:
 
 \begin{equation}
 S_c = \frac{\log_2 (2^N)}{\pi(N)}= \frac{N}{\pi(N)}
 \end{equation}
 
-Furthermore, if we assume a maximum entropy distribution over the primes then we would expect that each prime is drawn from a uniform distribution as in (1) so we would have:
+Furthermore, if we assume a maximum entropy distribution over the primes then we would expect that each prime is drawn from a uniform distribution(which is consistent with our original assumptions) so we would have:
 
 \begin{equation}
 S_c = \frac{N}{\pi(N)} \sim \ln(N)
 \end{equation}
 
-and this implies:
+As for why the natural logarithm appears in (3), we may first note that the base of the logarithm in the Shannon Entropy may be freely chosen without changing its properties. Moreover, given the assumptions we may express the expected number of primes in each interval as: 
+
+\begin{equation}
+\sum_{k=1}^{N-1} \frac{1}{k} \lvert \{x_k\} \rvert = \sum_{k=1}^{N-1} \frac{1}{k} \approx \ln(N) \tag{4}
+\end{equation}
+
+Now, given (3) and (4) this implies:
 
 \begin{equation}
 \pi(N) \sim \frac{N}{\ln(N)}
