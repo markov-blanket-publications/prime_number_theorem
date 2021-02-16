@@ -1,0 +1,151 @@
+\documentclass{article}
+
+% ready for submission
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{amsmath}}
+
+\title{The prime number theorem, or the incompressibility of the primes}
+
+\date{February 16, 2021}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  Aidan Rocke\\
+  \texttt{aidanrocke@gmail.com} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+   From an information-theoretic analysis of the prime number theorem, we may deduce that prime number sequences are incompressible. By pushing this analysis further, we may conclude that while a single counter-example may be used to prove that the Riemann Hypothesis is false, we can't prove that the Riemann Hypothesis is true. 
+   \end{abstract}
+
+\section{An information-theoretic derivation of the prime number theorem}
+
+If we know nothing about the primes in the worst case we may assume that each prime number less than or equal to $N$ is drawn uniformly from $[1,N]$. So our source of primes is: 
+
+\begin{equation}
+X \sim U([1,N])	
+\end{equation}
+
+where $H(X) = \ln(N)$ is the Shannon entropy of the uniform distribution.  
+
+Now, given an integer sequence of length $N$, $U_N = \{u_i\}_{i=1}^N \in \mathbb{N}^N$ we may define the prime encoding of $U_N$ as the binary sequence $X_N = \{x_i\}_{i=1}^N$ where $x_i =1$ if $u_i$ is prime and 
+$x_i=0$ otherwise. With no prior knowledge, given that each integer is either prime or not prime, 
+we have $2^N$ possible prime encodings(i.e. arrangements of the primes) in $[1,N] \subset \mathbb{N}$. 
+
+If there are $\pi(N)$ primes less than or equal to $N$ then the average number of bits per arrangement gives us the average amount of information gained from correctly identifying each prime number in $U_N$ as: 
+
+\begin{equation}
+S_c = \frac{\log_2 (2^N)}{\pi(N)}= \frac{N}{\pi(N)}	
+\end{equation}
+
+Furthermore, if we assume a maximum entropy distribution over the primes then we would expect that each prime is drawn from a uniform distribution as in (1) so we would have: 
+
+\begin{equation}
+S_c = \frac{N}{\pi(N)} \sim \ln(N) 
+\end{equation}
+
+and this implies: 
+
+\begin{equation}
+\pi(N) \sim \frac{N}{\ln(N)}
+\end{equation}
+
+which happens to be equivalent to the prime number theorem. 
+
+\newpage 
+
+\section{The Shannon source coding theorem, and the compressibility of the primes}
+
+By the Shannon source coding theorem, we may also infer that $\pi(N)$ primes can't be compressed into fewer than $\pi(N) \cdot \ln(N)$ bits so this result tells us something about the incompressibility of the primes. Specifically, what we gained from this analysis is the understanding that the sequence of prime numbers behaves like a statistically incompressible sequence. 
+
+Now, if $X_N = \{x_i\}_{i=1}^N$ is a prime encoding of length $N$ we must asymptotically obtain: 
+
+\begin{equation}
+\mathbb{E}[K(X_N)] \sim \ln(N) \cdot \pi(N) \sim N
+\end{equation}
+
+where $K(\cdot)$ is the Kolmogorov Complexity. 
+
+We shall now proceed by contradiction. If there is an algorithmic method which may be used to prove that the Riemann Hypothesis is true then we may construct a program of finite length $\textit{ zeta}$ which takes as input an integer sequence of length $N$ and outputs a prime encoding of length $N$ by correctly deciding whether each element in that sequence is prime or not. 
+
+By the hypothesis on $\textit{ zeta}$, we must have for any input of length $N$: 
+
+\begin{equation}
+\forall U_N \in \mathbb{N}^N, \mathbb{E}[K(\textit{ zeta} \circ U_N)] \leq \log_2(N) + \text{Cst} 	
+\end{equation}
+
+where there exists a prime encoding $X_N \in \{0,1\}^N$ such that $\textit{ zeta} \circ U_N = X_N$ so we must also have: 
+
+\begin{equation}
+\mathbb{E}[K(\textit{ zeta} \circ U_N)] = \mathbb{E}[K(X_N)]
+\end{equation}
+
+However, $X_N$ is known to be incompressible due to $(5)$ so we have: 
+
+\begin{equation}
+\lim_{N \to \infty} \frac{\mathbb{E}[K(\textit{ zeta} \circ U_N)]}{\mathbb{E}[K(X_N)]} \sim \lim_{N \to \infty} \frac{\log_2(N)}{N} = 0
+\end{equation} 
+
+which is a contradiction. 
+
+From this analysis we may conclude that while a single counter-example may be used to prove that the Riemann Hypothesis is false, we can't prove that the Riemann Hypothesis is true. 
+
+\section*{References}
+
+\small
+
+[1] Dániel Schumayer and David A. W. Hutchinson. Physics of the Riemann Hypothesis. Arxiv. 2011.
+
+[2] Doron Zagier. Newman's short proof of the Prime Number Theorem. The American Mathematical Monthly, Vol. 104, No. 8 (Oct., 1997), pp. 705-708
+
+[3] Peter D. Grünwald. The Minimum Description Length Principle
+. MIT Press. 2007.
+
+[4] M. Li and P. Vit´anyi. An Introduction to Kolmogorov Complexity and Its Applications. Graduate Texts in Computer Science. Springer. 1997.
+
+[5] Peter Shor. Shannon’s noiseless coding theorem. lecture notes. 2010.
+
+\end{document}
+
+\end{document}
