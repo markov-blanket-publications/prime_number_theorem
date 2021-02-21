@@ -143,6 +143,20 @@ From this analysis we may conclude that while a single counter-example may be us
 
 \newpage 
 
+\section{Testable predictions}
+
+I have colleagues in the machine learning community that believe their powerful machine learning methods may be used to predict the distribution of primes with much greater accuracy than any of the statistical algorithms developed so far. However, my model implies that independently of the amount of data and computational resources at their disposal, if the best machine learning model predicts the next $N$ primes to be at $\{a_i\}_{i=1}^N \in \mathbb{N}$ then for large $N$ their model's statistical performance will converge to an accuracy that is no better than:
+
+\begin{equation}
+\frac{1}{N}\sum_{i=1}^N \frac{1}{a_i}
+\end{equation}
+
+and the the scenario where they predict all $N$ primes accurately occurs with a frequency of:
+
+\begin{equation}
+\prod_{i=1}^N \frac{1}{a_i}
+\end{equation}
+
 \section{Discussion}
 
 Concerning the MaxEnt model I propose it is the simplest model that correctly predicts the average number of bits per prime. In this sense, it is also unique in satisfying Occam's razor or what has been formalised as the Minimum Description Length principle [3]. Furthermore, I can also explain why this model works. It turns out that there is a general connection between maximum entropy distributions and incompressible signals.
