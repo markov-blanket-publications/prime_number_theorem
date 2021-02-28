@@ -84,7 +84,7 @@ S_c = \frac{N}{\pi(N)} \sim \ln(N)
 As for why the natural logarithm appears in (3), we may first note that the base of the logarithm in the Shannon Entropy may be freely chosen without changing its properties. Moreover, given the assumptions if we define $(k,k+1] \subset [1,N]$ the average distance between consecutive primes is given by the sum of weighted distances $l$:
 
 \begin{equation}
-\sum_{k=1}^{N-1} \frac{1}{k} \lvert (k,k+1] \rvert = \sum_{k=1}^{N-1} \frac{1}{k} \approx \sum_{l=1}^\lambda l \cdot P_l \approx \ln(N) \tag{4}
+\sum_{k=1}^{N-1} \frac{1}{k} \lvert (k,k+1] \rvert = \sum_{k=1}^{N-1} \frac{1}{k} \approx \sum_{l=1}^\lambda l \cdot P_l \approx \ln(N) 
 \end{equation}
 
 where $P_l = \frac{1}{l} \cdot \sum_{k= \frac{l \cdot (l-1)}{2}}^{\frac{l\cdot (l-1)}{2}+l-1} \frac{1}{k+1}$ and  $\lambda = \frac{\sqrt{1+8(N+1)}-1}{2}$.
@@ -94,7 +94,7 @@ This is consistent with the maximum entropy assumption in (1) as there are $k$ d
 There is another useful interpretation of (4). If we break $\sum_{k=1}^{N} \frac{1}{k}$ into $\pi(N)$ disjoint blocks of size $[p_k,p_{k+1}]$ where $p_k,p_{k+1} \in \mathbb{P}$ and $p_1 = 1$:
 
 \begin{equation}
-\sum_{k=1}^{N} \frac{1}{k} \approx \sum_{k=1}^{\pi(N)} \sum_{b=p_k}^{p_{k+1}} \frac{1}{b} = \sum_{k=1}^{\pi(N)} (p_{k+1}-p_k)\cdot P(p_k) \approx \ln(N) \tag{5}
+\sum_{k=1}^{N} \frac{1}{k} \approx \sum_{k=1}^{\pi(N)} \sum_{b=p_k}^{p_{k+1}} \frac{1}{b} = \sum_{k=1}^{\pi(N)} (p_{k+1}-p_k)\cdot P(p_k) \approx \ln(N) 
 \end{equation}
 
 where $P(p_k)= \frac{1}{(p_{k+1}-p_k)} \sum_{b=p_k}^{p_{k+1}} \frac{1}{b}$. So we see that (4) also approximates the expected number of observations per prime where $P(p_k)$ may be interpreted as the probability of a successful observation in a frequentist sense. This is consistent with John Wheeler's \textit{it from bit} interpretation of entropy [5], where the entropy measures the average number of bits(i.e. yes/no questions) per prime number.
@@ -107,7 +107,7 @@ Now, given (3),(4) and (5) this implies that the average number of bits per prim
 
 which is in complete agreement with the predictions of the prime number theorem.
 
-\section{The Shannon source coding theorem, and the compressibility of the primes}
+\section{The Shannon source coding theorem, and the compressibility of the prime numbers}
 
 By the Shannon source coding theorem, we may also infer that $\pi(N)$ primes can't be compressed into fewer than $\pi(N) \cdot \ln(N)$ bits. So the primes are incompressible. In fact, given that the expected Kolmogorov Complexity equals the Shannon entropy for computable probability distributions for a prime encoding of length $N$ we must asymptotically obtain:
 
@@ -117,7 +117,7 @@ By the Shannon source coding theorem, we may also infer that $\pi(N)$ primes can
 
 where $K(\cdot)$ is the Kolmogorov Complexity.
 
-We shall now proceed by contradiction. If there is an algorithmic method which may be used to prove that the Riemann Hypothesis is true then we may construct a program of finite length $\textit{ zeta}$ which takes as input a strictly increasing integer sequence of length $N$, $U_N$, and outputs a prime encoding of length $N$, $X_N$, by correctly deciding whether each element in that sequence is prime or not.
+We shall now proceed by contradiction. If there is an algorithmic method which may be used to prove that the Riemann Hypothesis is true then we may construct a program of finite length $textit{ zeta}$ which takes as input a strictly increasing integer sequence of length $N$, $U_N$, and outputs a prime encoding of length $N$, $X_N$, by correctly deciding whether each element in that sequence is prime or not.
 
 By the hypothesis on $\textit{ zeta}$ and $U_N$, an application of the Minimum Description Length principle yields:
 
@@ -139,11 +139,11 @@ However, $X_N$ is known to be incompressible due to (5) so we have:
 
 which is a contradiction.
 
-From this analysis we may conclude that while a single counter-example may be used to prove that the Riemann Hypothesis is false, we can't prove that the Riemann Hypothesis is true. 
+From this analysis we may conclude that while a single counter-example may be used to prove that the Riemann Hypothesis is false, we can't prove that the Riemann Hypothesis is true.
 
 \newpage 
 
-\section{Testable predictions}
+\section{Testable predictions for machine learning researchers:}
 
 I have colleagues in the machine learning community that believe their powerful machine learning methods may be used to predict the distribution of primes with much greater accuracy than any of the statistical algorithms developed so far. However, my model implies that independently of the amount of data and computational resources at their disposal, if the best machine learning model predicts the next $N$ primes to be at $\{a_i\}_{i=1}^N \in \mathbb{N}$ then for large $N$ their model's statistical performance will converge to an accuracy that is no better than:
 
@@ -159,25 +159,13 @@ and the the scenario where they predict all $N$ primes accurately occurs with a 
 
 \section{Discussion}
 
-Concerning the MaxEnt model I propose it is the simplest model that correctly predicts the average number of bits per prime. In this sense, it is also unique in satisfying Occam's razor or what has been formalised as the Minimum Description Length principle [3]. Furthermore, I can also explain why this model works. It turns out that there is a general connection between maximum entropy distributions and incompressible signals.
+Concerning the MaxEnt model I propose it is the simplest model that correctly predicts the average number of bits per prime number. In this sense, it is also unique in satisfying Occam's razor or what has been formalised as the Minimum Description Length principle [3]. Furthermore, I can also explain why this model works. It turns out that there is a general connection between maximum entropy distributions and incompressible signals.
 
-The primes are incompressible for two fundamental reasons. First, they are dimensionally independent. By this I mean that we may define the infinite-dimensional vector space:
+The primes are incompressible for two fundamental reasons. We may first note that they are dimensionally independent which implies that every integer has a unique prime factorisation. Since any mathematical system that is sufficiently powerful to formulate a general theory of computation must contain arithmetic and the integers have a unique representation in terms of the primes, it follows that all the other types in such a system are derived types relative to the prime numbers.
 
-\begin{equation}
-\text{span}(\log \mathbb{P}) = \Big\\{\sum_{i=1}^\infty \alpha_i \log p_i \lvert p_i \in \mathbb{P}, \alpha_i \in \mathbb{Z}\Big\\}
-\end{equation}
+For a deeper insight into why the prime numbers appear to behave in an algorithmically random manner, one
+may consider the fact that if the human brain may be simulated by a Turing machine then algorithmic randomness is not observer independent [6]. This is a reasonable proposition if you consider the all-or-nothing operation of neurons as well as the observation that all organisms have finite sensory and behavioural state spaces.
 
-where $\log \mathbb{Q_+} \subset \text{span}(\log \mathbb{P})$, and $\forall p_j, p_{i \neq j} \in \mathbb{P}, \log p_{i \neq j} \perp \log p_j$ since:
-
-\begin{equation}
-\exists \alpha_i \in \mathbb{Z}, \sum_{i=1}^\infty \alpha_i \log p_i = \log p_j \iff \alpha_j = 1 \land \alpha_{i \neq j} = 0
-\end{equation}
-
-which implies that prime factorisations are unique.
-
-Second, any mathematical system that is sufficiently powerful to formulate a general theory of computation must contain
-arithmetic. Given that the integers have a unique representation in terms of the primes, it follows that all the other types in
-such a system are derived types relative to the prime numbers.
 
 \section*{References}
 
@@ -193,6 +181,8 @@ such a system are derived types relative to the prime numbers.
 [4] M. Li and P. Vitányi. An Introduction to Kolmogorov Complexity and Its Applications. Graduate Texts in Computer Science. Springer. 1997.
 
 [5] Peter Shor. Shannon’s noiseless coding theorem. lecture notes. 2010.
+
+[6] Aidan Rocke (https://cstheory.stackexchange.com/users/47594/aidan-rocke), On the equivalence of incompressibility and incompleteness in machine learning, URL (version: 2021-02-21): https://cstheory.stackexchange.com/q/48443
 
 \end{document}
 
